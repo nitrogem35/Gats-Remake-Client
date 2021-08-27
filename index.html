@@ -1,70 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="Gats, shoot, build, color, armor, play, Gats remake, Remake, GatsIO, Gats-IO, Pistol, SMG, Shotgun, Assault, Sniper, LMG ">
-	<title>Gats-Remake V1.0.0</title>
-	<link href="style.css" rel="stylesheet" type="text/css">
+    <!--initialize load screen-->
+    <div id="title2">
+        Loading
+    </div>
+    <script>
+        var loadStart = Date.now()
+        var loadingText = document.getElementById('title2')
+        var ca = '.'
+        var load = setInterval(() => {
+            if (ca.length > 3) ca = '.'
+            loadingText.innerHTML = `Loading${ca}`
+            ca += '.'
+        }, 400) 
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords"
+        content="Gats, shoot, build, color, armor, play, Gats remake, Remake, GatsIO, Gats-IO, Pistol, SMG, Shotgun, Assault, Sniper, LMG, Burst, DMR, shooter io game, shooter io ">
+    <title>Gunnarz.io v1.2.0</title>
+    <link href="gunnarz-client.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
-	<div id="title-div">
-		<h1 id="title">Gats Remake V1.0.0</h1>
-	</div>
-	<div id="main">
-		<button id="button-play" onclick="play()">Play</button>
+    <button id="force-click" style="text-align:center; display: none;" onclick="document.getElementById(`main`).style.display=''">
+        Join
+    </button>
+    <div id="guns-menu" style="display:none;">
+        <div style="text-align:center;">
+            <h1 id="title-guns">
+                Guns
+            </h1>
+            <div id="flecha"
+                onclick="document.getElementById(`guns-menu`).style.display=`none`;document.getElementById(`main`).style.display=``;document.getElementById(`title`).style.display=``">
+            </div>
+            <div class="gunsmenux" id="gun-0">
+                <div class="center-gun">
+                    <img src="/assets/img/guns/mp5.png" width="100%">
+                </div>
+            </div>
+            <div class="gunsmenux" id="gun-1">
+                <div class="center-gun">
+                    <img src="">
+                </div>
+            </div>
+            <div class="gunsmenux" id="gun-2">
+                <div class="center-gun">
+                    <img src="">
+                </div>
+            </div>
+            <div class="gunsmenux" id="gun-3">
+                <div class="center-gun">
+                    <img src="">
+                </div>
+            </div>
+            <div class="gunsmenux" id="gun-4">
+                <div class="center-gun">
+                    <img src="">
+                </div>
+            </div>
+            <div class="gunsmenux" id="gun-5">
+                <div class="center-gun">
+                    <img src="">
+                </div>
+            </div>
+            <div class="gunsmenux" id="gun-6">
+                <div class="center-gun">
+                    <img src="">
+                </div>
+            </div>
+            <div class="gunsmenux" id="gun-7">
+            </div>
+        </div>
+    </div>
+    <div id="title-div" style="display:none;">
+        <h1 id="title">Gunnarz.io v1.1.0</h1>
+    </div>
+    <div id="login-menu-container" style="display:none;">
+        <div id="login-main">
+            <div style="margin-top: 10px;">
+                <p onclick="closeLogin()"
+                    class="cerrar">x</p>
+                <label for="name" class="label-login">Username or Email</label>
+                <input id="name" class="input-global" placeholder="username">
+            </div>
+            <div style="margin-top:20px;">
+                <label for="password" class="label-login">Password</label><input id="password" type="password"
+                    class="input-global" placeholder="password">
+            </div>
+            <div id="login-button">
+                <button id="login-boton-menu">Login</button>
+            </div>
+        </div>
+    </div>
+    <div id="main" style="display: none;">
+        <button id="button-play" style="cursor: pointer;">Connecting...</button>
         <div id="logout-login">
-            <button id="login" class="boton">
-             Login
+            <button
+                onclick="openLogin()" onmouseover="onHoverSfx()"
+                id="login" class="boton">
+                Login
             </button>
-            <button id="logout" class="boton">
-              Logout
-         </button>
+            <button id="logout" class="boton" onmouseover="onHoverSfx()" onclick="">
+                Logout
+            </button>
         </div>
         <div class="gun">
             <h1 class="title">Guns</h1>
-                <div style="background:#a7a2a2;" id="gun0" class="guns"><img src="assets/img/gun-assets/pistol.png" width="60" height="60"></div>
-                <div style="background:#a7a2a2;" id="gun1" class="guns"><img src="assets/img/gun-assets/sniper.png" width="60" height="60"></div>
-                <div style="background:#a7a2a2;" id="gun2" class="guns"><img src="assets/img/gun-assets/shotgun.png" width="60" height="60"> </div>
-            
-        <div id="colors"> 
-            <h1 class="title">Color</h1> 
-            <div id="color0" class="hoverFat985" onclick="changeColor(this.id)" unselectable="off" style="background:url(assets/img/img-colors/redColor.png);"></div>
-            <div id="color1" class="hoverFat985" onclick="changeColor(this.id)" unselectable="off" style="background:url(assets/img/img-colors/orangeColor.png);"></div>  
-            <div id="color2" class="hoverFat985" onclick="changeColor(this.id)" unselectable="off" style="background:url(assets/img/img-colors/yellowColor.png);"></div>
-            <div id="color3" class="hoverFat985" onclick="changeColor(this.id)" unselectable="off" style="background:url(assets/img/img-colors/greenColor.png);"></div>
-            <div id="color4" class="hoverFat985" onclick="changeColor(this.id)" unselectable="off" style="background:url(assets/img/img-colors/blueColor.png);"></div>
-            <div id="color5" class="hoverFat985" onclick="changeColor(this.id)" unselectable="off" style="background:url(assets/img/img-colors/purpleColor.png);"></div>
+            <button style="width:80px;margin-top:5px;" class="boton"
+                onclick="openGuns()" onmouseover="onHoverSfx()"
+                id="guns-boton-click">Click</button>
         </div>
-        <div id="armor">
-          <h1 class="title" id="armor">Armor</h1>
-          <div class="armor-style" id="armor-1">
-          <img class="img-armor" src="https://gats.io/img/no-armor.png"> </div>
-          <div class="armor-style" id="armor-2">
-          <img class="img-armor" src="https://gats.io/img/light-armor.png"> </div>
-          <div class="armor-style" id="armor-3">
-          <img class="img-armor" src="https://gats.io/img/medium-armor.png"> </div>
-          <div class="armor-style" id="armor-4">
-          <img class="img-armor" src="https://gats.io/img/heavy-armor.png"> </div>
-            
+        <div id="colors">
+            <h1 class="title">Colors</h1>
+            <div id="color0" class="hoverFat985" onclick="changeColor(this.id); onClickSfx()" unselectable="off"
+                style="background:url(assets/img/colors/fleshColor.png);"></div>
+            <div id="color1" class="hoverFat985" onclick="changeColor(this.id); onClickSfx()" unselectable="off"
+                style="background:url(assets/img/colors/maroonColor.png);"></div>
+            <div id="color2" class="hoverFat985" onclick="changeColor(this.id); onClickSfx()" unselectable="off"
+                style="background:url(assets/img/colors/redColor.png);"></div>
+            <div id="color3" class="hoverFat985" onclick="changeColor(this.id); onClickSfx()" unselectable="off"
+                style="background:url(assets/img/colors/orangeColor.png);"></div>
+            <div id="color4" class="hoverFat985" onclick="changeColor(this.id); onClickSfx()" unselectable="off"
+                style="background:url(assets/img/colors/yellowColor.png);"></div>
+            <div id="color5" class="hoverFat985" onclick="changeColor(this.id); onClickSfx()" unselectable="off"
+                style="background:url(assets/img/colors/greenColor.png);"></div>
+            <div id="color6" class="hoverFat985" onclick="changeColor(this.id); onClickSfx()" unselectable="off"
+                style="background:url(assets/img/colors/blueColor.png);"></div>
+            <div id="color7" class="hoverFat985" onclick="changeColor(this.id); onClickSfx()" unselectable="off"
+                style="background:url(assets/img/colors/purpleColor.png);"></div>
+            <div id="color8" class="hoverFat985" onclick="changeColor(this.id); onClickSfx()" unselectable="off"
+                style="background:url(assets/img/colors/pinkColor.png);"></div>
         </div>
-    </div>
-    <!-- Get audio -->
-    <audio id="Pistol-Sound" src="/assets/sfx/Pistol-Sound.mp3"></audio>
-    <audio id="SMG-Sound" src="/assets/sfx/SMG-Sound.mp3"></audio>
-    <audio id="Shotgun-Sound" src="/assets/sfx/Shotgun-Sound.mp3"></audio>
-    <audio id="Assault-Sound" src="/assets/sfx/Assault-Sound.mp3"></audio>
-    <audio id="Sniper-Sound" src="/assets/sfx/Sniper-Sound.mp3"></audio>
-    <audio id="LMG-Sound" src="/assets/sfx/LMG-Sound.mp3"></audio>
-    <audio id="Reload-Sound" src="/assets/sfx/Reload-Sound.mp3"></audio>
-    <audio id="Nuke-Sound" src="/assets/sfx/Nuke-Sound.mp3"></audio>
-    <!-- Get local scripts -->
-    <script src="/builds/1.0.0.js"></script>
+        <div id="armors">
+            <h1 class="title">Armor</h1>
+            <div class="armor-style" id="armor0" onclick="changeArmor(this.id); onClickSfx()"
+                style="background:url(assets/img/armor/armor0.png);background-position: center;background-size: 46px;">
+            </div>
+            <div class="armor-style" id="armor1" onclick="changeArmor(this.id); onClickSfx()"
+                style="background:url(assets/img/armor/armor1.png);background-position: center;background-size: 40px;">
+            </div>
+            <div class="armor-style" id="armor2" onclick="changeArmor(this.id); onClickSfx()"
+                style="background:url(assets/img/armor/armor2.png);background-position: center;background-size: 40px;">
+            </div>
+            <div class="armor-style" id="armor3" onclick="changeArmor(this.id); onClickSfx()"
+                style="background:url(assets/img/armor/armor3.png);background-position: center;background-size: 40px;">
+            </div>
+        </div>
 
-</div>
-<script src="/builds/1.0.0.js"></script>
+    </div>
+    <script src="/builds/1.1.0.js"></script>
+    <audio id="onHoverSfx" src="/assets/sfx/button-hover.mp3" preload></audio>
+    <audio id="onClickSfx" src="/assets/sfx/button-click.mp3" preload></audio>
+    <audio id="onHoverSfx2"src="/assets/sfx/button-hover-2.mp3" preload></audio>
+    <script>
+        var loadTime = Date.now() - loadStart
+        onLoad(loadTime)
+    </script>
 </body>
+
 </html>
